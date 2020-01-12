@@ -1,0 +1,4 @@
+black==19.10b0
+Click==7.0
+pylint==2.4.4
+requests==2.22.0
