@@ -44,4 +44,5 @@ def search(language, date):
 
 
 if __name__ == "__main__":
+    # pylint: disable=no-value-for-parameter
     search()
