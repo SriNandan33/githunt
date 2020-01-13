@@ -22,7 +22,7 @@ API_URL = "https://api.github.com/search/repositories"
 )
 @click.option(
     "--display_format",
-    default="table",
+    default="colored",
     help="output format, it can be either table or colored",
 )
 def search(language, date, display_format):
