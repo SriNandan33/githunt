@@ -7,6 +7,9 @@ from datetime import datetime, timedelta
 import click
 import requests
 
+# Internal application imports
+from utils import beautify
+
 API_URL = "https://api.github.com/search/repositories"
 
 
@@ -17,7 +20,12 @@ API_URL = "https://api.github.com/search/repositories"
     default="",
     help="date in the ISO8601 format which is YYYY-MM-DD (year-month-day)",
 )
-def search(language, date):
+@click.option(
+    "--display_format",
+    default="table",
+    help="output format, it can be either table or colored",
+)
+def search(language, date, display_format):
     """ Returns repositories based on the language.
         repositories are sorted by stars
     """
@@ -40,7 +48,7 @@ def search(language, date):
     )
     url = f"{API_URL}?q={query}&sort=stars&order=desc"
     repositories = requests.get(url).json()
-    print(repositories)
+    beautify(repositories["items"], display_format)
 
 
 if __name__ == "__main__":
