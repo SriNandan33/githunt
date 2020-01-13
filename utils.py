@@ -4,16 +4,27 @@ from colorama import init, Fore, Style
 from tabulate import tabulate
 
 
+def make_hyperlink(text, target):
+    """ Makes hyperlink out of text and target and retuns it
+        https://stackoverflow.com/questions/44078888/clickable-html-links-in-python-3-6-shell
+    """
+    return f"\u001b]8;;{target}\u001b\\{text}\u001b]8;;\u001b\\"
+
+
 def colored_output(repos):
     """ Displays repositories using colorama """
 
     init()  # initialize coloroma
-    seperator = "+---------------------------------------------------------------+"
+    seperator = "+==================================================================+"
     print(Fore.WHITE, Style.BRIGHT, seperator)
     for repo in repos:
-        print(Fore.LIGHTRED_EX, Style.BRIGHT, f"{repo['full_name']}")
         print()
-        print(Fore.RESET, Style.NORMAL, f"{repo['html_url']}")
+        print(
+            Fore.LIGHTRED_EX,
+            Style.BRIGHT,
+            f"{make_hyperlink(repo['full_name'], repo['html_url'])}",
+        )
+        print(Fore.LIGHTYELLOW_EX, Style.NORMAL, f"{repo['description']}")
         print()
         print(Fore.LIGHTCYAN_EX, Style.BRIGHT, f"{repo['language']}", end="\t")
         print(
