@@ -1,5 +1,9 @@
 """ Formats repositories in console """
 
+# Standard library imports
+import textwrap
+
+# Third party imports
 from colorama import init, Fore, Style
 from tabulate import tabulate
 
@@ -22,9 +26,13 @@ def colored_output(repos):
         print(
             Fore.LIGHTRED_EX,
             Style.BRIGHT,
-            f"{make_hyperlink(repo['full_name'], repo['html_url'])}",
+            f"{make_hyperlink(repo['name'], repo['html_url'])}",
         )
-        print(Fore.LIGHTYELLOW_EX, Style.NORMAL, f"{repo['description']}")
+        print(
+            Fore.LIGHTYELLOW_EX,
+            Style.NORMAL,
+            "\n  ".join(textwrap.wrap(f"{repo['description']}", len(seperator))),
+        )
         print()
         print(Fore.LIGHTCYAN_EX, Style.BRIGHT, f"{repo['language']}", end="\t")
         print(
