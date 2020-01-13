@@ -41,9 +41,15 @@ def colored_output(repos):
 
 def tabular_output(repos):
     """ Displays repositories as tables using tabulate """
-    table_headers = ["Name", "URL", "Language", "Stars"]
+    table_headers = ["URL", "Language", "Stars", "Forks", "Watches"]
     repositories = [
-        [repo["full_name"], repo["html_url"], repo["stargazers_count"]]
+        [
+            repo["html_url"],
+            repo["language"],
+            repo["stargazers_count"],
+            repo["forks_count"],
+            repo["watchers_count"],
+        ]
         for repo in repos
     ]
     print(tabulate(repositories, headers=table_headers, tablefmt="fancy_grid"))
