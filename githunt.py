@@ -43,9 +43,8 @@ def search(language, date, display_format):
             (start_date + timedelta(days=1)).date().isoformat()
         )
 
-    query = (
-        f"stars:>0+language:{language}+created:{start_date.isoformat()}..{end_date.isoformat()}"
-    )
+    query = f"stars:>0+created:{start_date.isoformat()}..{end_date.isoformat()}"
+    query += f"+language:{language}" if language else ""
     url = f"{API_URL}?q={query}&sort=stars&order=desc"
     repositories = requests.get(url).json()
     beautify(repositories["items"], display_format)
