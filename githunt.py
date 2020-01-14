@@ -44,7 +44,7 @@ def search(language, date, display_format):
         )
 
     query = (
-        f"language:{language}+created:{start_date.isoformat()}..{end_date.isoformat()}"
+        f"stars:>0+language:{language}+created:{start_date.isoformat()}..{end_date.isoformat()}"
     )
     url = f"{API_URL}?q={query}&sort=stars&order=desc"
     repositories = requests.get(url).json()
