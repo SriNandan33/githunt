@@ -21,11 +21,9 @@ API_URL = "https://api.github.com/search/repositories"
     help="date in the ISO8601 format which is YYYY-MM-DD (year-month-day)",
 )
 @click.option(
-    "--display_format",
-    default="colored",
-    help="output format, it can be either table or colored",
+    "--fmt", default="colored", help="output format, it can be either table or colored",
 )
-def search(language, date, display_format):
+def search(language, date, fmt):
     """ Returns repositories based on the language.
         repositories are sorted by stars
     """
@@ -47,7 +45,7 @@ def search(language, date, display_format):
     query += f"+language:{language}" if language else ""
     url = f"{API_URL}?q={query}&sort=stars&order=desc"
     repositories = requests.get(url).json()
-    beautify(repositories["items"], display_format)
+    beautify(repositories["items"], fmt)
 
 
 if __name__ == "__main__":

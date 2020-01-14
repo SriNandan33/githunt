@@ -63,11 +63,11 @@ def tabular_output(repos):
     print(tabulate(repositories, headers=table_headers, tablefmt="fancy_grid"))
 
 
-def beautify(repos, display_format):
+def beautify(repos, fmt):
     """ Beautfies the output based on display format given """
-    if display_format == "colored":
+    if fmt == "colored":
         colored_output(repos)
-    elif display_format == "table":
+    elif fmt == "table":
         tabular_output(repos)
     else:
         print("Can't output anything. Invalid display format!")
