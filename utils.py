@@ -20,9 +20,8 @@ def colored_output(repos):
 
     init()  # initialize coloroma
     seperator = "+==================================================================+"
-    print(Fore.WHITE, Style.BRIGHT, seperator)
+    print(Fore.WHITE, Style.BRIGHT, seperator, end="\n\n")
     for repo in repos:
-        print()
         print(
             Fore.LIGHTRED_EX,
             Style.BRIGHT,
@@ -32,8 +31,8 @@ def colored_output(repos):
             Fore.LIGHTYELLOW_EX,
             Style.NORMAL,
             "\n  ".join(textwrap.wrap(f"{repo['description']}", len(seperator))),
+            end="\n\n",
         )
-        print()
         print(Fore.LIGHTCYAN_EX, Style.BRIGHT, f"{repo['language']}", end="\t")
         print(
             Fore.LIGHTCYAN_EX,
@@ -42,9 +41,13 @@ def colored_output(repos):
             end="\t",
         )
         print(Fore.LIGHTCYAN_EX, Style.BRIGHT, f"{repo['forks_count']} Forks", end="\t")
-        print(Fore.LIGHTCYAN_EX, Style.BRIGHT, f"{repo['watchers_count']} Watchers")
-        print()
-        print(Fore.WHITE, Style.BRIGHT, seperator)
+        print(
+            Fore.LIGHTCYAN_EX,
+            Style.BRIGHT,
+            f"{repo['watchers_count']} Watchers",
+            end="\n\n",
+        )
+        print(Fore.WHITE, Style.BRIGHT, seperator, end="\n\n")
 
 
 def tabular_output(repos):
