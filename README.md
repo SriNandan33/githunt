@@ -1,7 +1,25 @@
 # githunt
-## Browse most stared repositories by date on Github from your command line
+### Browse most stared repositories by date on Github from your command line.
+> This libray is inspired by the [Githunt](https://github.com/kamranahmedse/githunt) webapp created by [Kamran Ahmed](https://kamranahmed.info/), you can view it [here](https://kamranahmed.info/githunt/).
 
-### This libray is inspired by the [Githunt](https://github.com/kamranahmedse/githunt) webapp created by [Kamran Ahmed](https://kamranahmed.info/), you can view it [here](https://kamranahmed.info/githunt/).
+## Installation
+``` pip install githunt ```
 
-## TODO
-[ ] Publish to PyPi as python library.
+## Usage
+```
+githunt --help
+
+# Output
+Usage: githunt [OPTIONS]
+
+  Returns repositories based on the language. repositories are sorted by
+  stars
+
+Options:
+  -l, --language TEXT  language filter (eg: python)
+  -d, --date TEXT      date in the ISO8601 format which is YYYY-MM-DD (year-
+                       month-day)
+  -f, --fmt TEXT       output format, it can be either table or colored
+  --help               Show this message and exit.
+
+```
