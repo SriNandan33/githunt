@@ -43,8 +43,8 @@ jobs:
           name: run formatters and linters
           command: |
             . venv/bin/activate
-            black githunt.py utils.py
-            pylint githunt.py utils.py
+            black githunt
+            pylint githunt
 
       - store_artifacts:
           path: test-reports
