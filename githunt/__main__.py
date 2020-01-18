@@ -1,4 +1,4 @@
-""" Browse most stared repositories by date on Github """
+""" githunt.__main__ """
 
 # Standard library imports
 from datetime import datetime, timedelta
@@ -8,7 +8,7 @@ import click
 import requests
 
 # Internal application imports
-from utils import beautify
+from .utils import beautify
 
 API_URL = "https://api.github.com/search/repositories"
 
