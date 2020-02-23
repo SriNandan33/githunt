@@ -1,1 +1,1 @@
-Kyle Cooper (https://github.com/kc8)
+Kyle (https://github.com/kc8)
