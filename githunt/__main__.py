@@ -8,7 +8,8 @@ import click
 import requests
 
 # Internal application imports
-from .utils import beautify
+from .utils import beautify, text_out
+
 
 API_URL = "https://api.github.com/search/repositories"
 
@@ -27,7 +28,14 @@ API_URL = "https://api.github.com/search/repositories"
     default="colored",
     help="output format, it can be either table or colored",
 )
-def search(language, date, fmt):
+@click.option(
+    "--out",
+    "-o",
+    default= "",
+    help="Outputs the search result into the specifed file on desktop",
+)
+
+def search(language, date, fmt, out):
     """ Returns repositories based on the language.
         repositories are sorted by stars
     """
@@ -49,9 +57,18 @@ def search(language, date, fmt):
     query += f"+language:{language}" if language else ""
     url = f"{API_URL}?q={query}&sort=stars&order=desc"
     repositories = requests.get(url).json()
-    beautify(repositories["items"], fmt)
 
+
+    #pls merci it's 3:38 when i'm writing this
+    if out:
+        text_out(repositories["items"], out)
+    else:
+        beautify(repositories["items"], fmt)
+    
 
 if __name__ == "__main__":
     # pylint: disable=no-value-for-parameter
     search()
+    
+    
+
