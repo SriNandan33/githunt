@@ -14,22 +14,22 @@ API_URL = "https://api.github.com/search/repositories"
 
 
 @click.command()
-@click.option("--language", "-l", default="", help="language filter (eg: python)")
+@click.option("--language", "-l", default="", help="Language filter (e.g. Python)")
 @click.option(
     "--date",
     "-d",
     default="",
-    help="date in the ISO8601 format which is YYYY-MM-DD (year-month-day)",
+    help="ISO-8601-formatted date (YYYY-MM-DD)",
 )
 @click.option(
     "--fmt",
     "-f",
     default="colored",
-    help="output format, it can be either table or colored",
+    help="Output format (table or colored)",
 )
 def search(language, date, fmt):
-    """ Returns repositories based on the language.
-        repositories are sorted by stars
+    """ 
+    Returns repositories based on the language. Repositories are sorted by stars
     """
 
     if not date:

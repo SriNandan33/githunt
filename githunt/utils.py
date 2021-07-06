@@ -2,11 +2,17 @@
 
 # Standard library imports
 import textwrap
+from sys import stderr
 
 # Third party imports
 from colorama import init, Fore, Style
 from tabulate import tabulate
 
+
+
+def eprint(string):
+    """ Prints a string to stderr. """
+    print(string, file=stderr)
 
 def make_hyperlink(text, target):
     """ Makes hyperlink out of text and target and retuns it
@@ -33,7 +39,7 @@ def colored_output(repos):
             "\n  ".join(textwrap.wrap(f"{repo['description']}", len(seperator))),
             end="\n\n",
         )
-        print(Fore.LIGHTCYAN_EX, Style.BRIGHT, f"{repo['language']}", end="\t")
+        print(Fore.LIGHTCYAN_EX, Style.BRIGHT, repo['language'], end="\t")
         print(
             Fore.LIGHTCYAN_EX,
             Style.BRIGHT,
@@ -67,10 +73,10 @@ def tabular_output(repos):
 
 
 def beautify(repos, fmt):
-    """ Beautfies the output based on display format given """
+    """ Beautfies the output based on the display format given """
     if fmt == "colored":
         colored_output(repos)
     elif fmt == "table":
         tabular_output(repos)
     else:
-        print("Can't output anything. Invalid display format!")
+        eprint("Can't output anything. Invalid display format!")
