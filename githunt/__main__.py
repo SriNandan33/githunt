@@ -2,6 +2,7 @@
 
 # Standard library imports
 from datetime import datetime, timedelta
+from sys import stdout
 
 # Third party imports
 import click
@@ -27,10 +28,18 @@ API_URL = "https://api.github.com/search/repositories"
     default="colored",
     help="Output format (table or colored)",
 )
-def search(language, date, fmt):
+@click.option(
+    "--output",
+    "-o",
+    default="",
+    help="File to pipe output to."
+)
+def search(language, date, fmt, output):
     """ 
     Returns repositories based on the language. Repositories are sorted by stars
     """
+    if output == "":
+        output = stdout
 
     if not date:
         start_date = datetime.fromisoformat(
@@ -49,7 +58,7 @@ def search(language, date, fmt):
     query += f"+language:{language}" if language else ""
     url = f"{API_URL}?q={query}&sort=stars&order=desc"
     repositories = requests.get(url).json()
-    beautify(repositories["items"], fmt)
+    beautify(repositories["items"], fmt, output)
 
 
 if __name__ == "__main__":

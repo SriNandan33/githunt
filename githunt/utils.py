@@ -21,7 +21,7 @@ def make_hyperlink(text, target):
     return f"\u001b]8;;{target}\u001b\\{text}\u001b]8;;\u001b\\"
 
 
-def colored_output(repos):
+def colored_output(repos, output):
     """ Displays repositories using colorama """
 
     init()  # initialize coloroma
@@ -53,10 +53,10 @@ def colored_output(repos):
             f"{repo['watchers_count']} Watchers",
             end="\n\n",
         )
-        print(Fore.WHITE, Style.BRIGHT, seperator, end="\n\n")
+        print(Fore.WHITE, Style.BRIGHT, seperator, end="\n\n", file=output)
 
 
-def tabular_output(repos):
+def tabular_output(repos, output):
     """ Displays repositories as tables using tabulate """
     table_headers = ["URL", "Language", "Stars", "Forks", "Watches"]
     repositories = [
@@ -69,13 +69,13 @@ def tabular_output(repos):
         ]
         for repo in repos
     ]
-    print(tabulate(repositories, headers=table_headers, tablefmt="fancy_grid"))
+    print(tabulate(repositories, headers=table_headers, tablefmt="fancy_grid"), file=output)
 
 
-def beautify(repos, fmt):
+def beautify(repos, fmt, output):
     """ Beautfies the output based on the display format given """
     if fmt == "colored":
-        colored_output(repos)
+        colored_output(repos, output)
     elif fmt == "table":
         tabular_output(repos)
     else:
