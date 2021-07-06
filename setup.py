@@ -1,5 +1,4 @@
 import io
-import pathlib
 import re
 
 from setuptools import setup
@@ -16,7 +15,7 @@ setup(
     version=version,
     description="Browse most stared Github repositories by date from your command line.",
     long_description=readme,
-    python_requires='>3.7',
+    python_requires='=>3.7',
     long_description_content_type="text/markdown",
     url="https://github.com/SriNandan33/githunt",
     author="Srinivasa Rao",
