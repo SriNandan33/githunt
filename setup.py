@@ -34,7 +34,7 @@ setup(
         "Click==7.0",
         "colorama==0.4.3",
         "pylint==2.4.4",
-        "requests==2.22.0",
+        "requests==2.31.0",
         "tabulate==0.8.6",
     ],
     entry_points={
